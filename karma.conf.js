@@ -1,9 +1,9 @@
 module.exports = function(config) {
 	config.set({
-		frameworks: ["qunit"],
+		frameworks: ['qunit'],
 		files: [
 			// vendor files
-			"node_modules/jquery/dist/jquery.min.js",
+			'node_modules/jquery/dist/jquery.min.js',
 			'node_modules/lite-fixture/index.js',
 			// src files
 			{pattern: "test/unit/**/*.js"}
