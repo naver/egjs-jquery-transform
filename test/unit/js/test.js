@@ -11,13 +11,23 @@
 * Copyright (c) 2015 NAVER Corp.
 * egjs projects are licensed under the MIT license
 */
-import {toMatrix, toMatrix3d } from "../../../src/index.js";
-// import {module, test, strictEqual, deepEqual, ok, equal} from "qunitjs/qunit/qunit";
+import {toMatrix, toMatrix3d} from "../../../src/index.js";
 
 QUnit.config.reorder = false;
+function initializeElement() {
+	sandbox({
+		id: "box1",
+		style: 'width:120px;height:120px;position:absolute;border:solid;'
+	});
 
+	sandbox({
+		id: "box2",
+		style: 'width:120px;height:120px;position:absolute;border:solid;'
+	});
+}
 QUnit.module("Absolute animate Test", {
 	beforeEach : function() {
+		initializeElement();
 		// this.egAnimate = eg.invoke("transform",[jQuery]);
 		this.$el1 = $("#box1");
 		this.$el2 = $("#box2");
@@ -25,6 +35,7 @@ QUnit.module("Absolute animate Test", {
 	afterEach : function() {
 		this.$el1.css("transform", "none");
 		this.$el2.css("transform", "none");
+		cleanup();
 	}
 });
 
@@ -43,7 +54,7 @@ var ABSOLUTE_CASE = [
 $.each(ABSOLUTE_CASE, function(i, val) {
 	//Given
 	//ABSOLUTE_CASE
-	test(val.title, function(assert) {
+	QUnit.test(val.title, function(assert) {
 		var done = assert.async(),
 			self = this;
 
@@ -64,7 +75,7 @@ $.each(ABSOLUTE_CASE, function(i, val) {
 					actual[1][i] = parseFloat(actual[1][i]).toFixed(3);
 				});
 
-				equal(actual[1].toString(), expected[1].toString());
+				assert.equal(actual[1].toString(), expected[1].toString());
 				// setTimeout(function() {
 				done();
 				// }, 1000);
@@ -80,10 +91,14 @@ $.each(ABSOLUTE_CASE, function(i, val) {
  */
 if ( navigator.userAgent.indexOf("PhantomJS") == -1 ) {
 	QUnit.module("Relative animate Test", {
-		beforeEach : function() {
-			// this.egAnimate = eg.invoke("transform",[jQuery,window]);
+		before : function() {
+			initializeElement();
+
+			this.$el1 = $("#box1").css("transform", "none");
+			this.$el2 = $("#box2").css("transform", "none");
 		},
-		afterEach : function() {
+		after : function() {
+			cleanup();
 		}
 	});
 
@@ -98,28 +113,20 @@ if ( navigator.userAgent.indexOf("PhantomJS") == -1 ) {
 
 	$.each( RELATIVE_CASE, function(i, val) {
 		//Given
-		var $el1 = $("#box1"),
-			$el2 = $("#box2");
-
-		var initialTransform = "none";
-		$el1.css("transform", initialTransform);
-		$el2.css("transform", initialTransform);
-
 		//RELATIVE_CASE
-		test(val.title, function(assert) {
+		QUnit.test(val.title, function(assert) {
 			var done = assert.async(),
 				self = this;
-
 			//When
-			$el1
+			this.$el1
 				.css("transform", val.css);
 
-			$el2
+			this.$el2
 				.animate({"transform" : val.transform},
 					function() {
 						//Then
-						var expected = toMatrix($el1.css("transform")),
-						 	result = toMatrix($el2.css("transform"));
+						var expected = toMatrix(self.$el1.css("transform")),
+						 	result = toMatrix(self.$el2.css("transform"));
 
 						// Ignore very tiny difference.
 						// Because output matrixes can be different with input matrixes.)
@@ -128,7 +135,7 @@ if ( navigator.userAgent.indexOf("PhantomJS") == -1 ) {
 							result[1][i] = parseFloat(parseFloat(result[1][i]).toFixed(3));
 						});
 
-						equal(result[1].toString(), expected[1].toString());
+						assert.equal(result[1].toString(), expected[1].toString());
 						//setTimeout(function() {
 							done();
 						//}, 500);
@@ -140,10 +147,15 @@ if ( navigator.userAgent.indexOf("PhantomJS") == -1 ) {
 
 if (navigator.userAgent.indexOf("WebKit") >= 0 || navigator.userAgent.indexOf("Firefox") >= 0) {
 	QUnit.module("3d animate Test", {
-		beforeEach : function() {
+		before : function() {
 			// this.egAnimate = eg.invoke("transform",[jQuery,window]);
+			initializeElement();
+
+			this.$el1 = $("#box1").css("transform", "none");
+			this.$el2 = $("#box2").css("transform", "none");
 		},
-		afterEach : function() {
+		after : function() {
+			cleanup();
 		}
 	});
 
@@ -178,28 +190,22 @@ if (navigator.userAgent.indexOf("WebKit") >= 0 || navigator.userAgent.indexOf("F
 
 	$.each( ANI_3D_CASE, function(i, val) {
 		//Given
-		var $el1 = $("#box1"),
-			$el2 = $("#box2");
-
-		$el1.css("transform", "none");
-		$el2.css("transform", "none");
-
 		//RELATIVE_CASE
-		test(val.title, function(assert) {
+		QUnit.test(val.title, function(assert) {
 			var done = assert.async(),
 				self = this;
 
 			//When
-			$el1
+			this.$el1
 				.css( "transform", val.css );
 
-			$el2
+			this.$el2
 				.animate({"transform" : val.transform},
 					function() {
 						//Then
 						// var t1 = self.egAnimate.toMatrix($el1.css("transform")),
-						var t1 = toMatrix($el1.css("transform")),
-						 	t2 = toMatrix($el2.css("transform"));
+						var t1 = toMatrix(self.$el1.css("transform")),
+						 	t2 = toMatrix(self.$el2.css("transform"));
 
 						if (t1[1].length < t2[1].length) {
 							t1 = toMatrix3d(t1);
@@ -214,7 +220,7 @@ if (navigator.userAgent.indexOf("WebKit") >= 0 || navigator.userAgent.indexOf("F
 							t2[1][i] = parseFloat(t2[1][i]).toFixed(3);
 						});
 
-						equal(t1[1].toString(), t2[1].toString());
+						assert.equal(t1[1].toString(), t2[1].toString());
 						done();
 					}
 				);
