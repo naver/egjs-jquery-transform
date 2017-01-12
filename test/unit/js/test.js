@@ -29,12 +29,10 @@ QUnit.module("Absolute animate Test", {
 	beforeEach : function() {
 		initializeElement();
 		// this.egAnimate = eg.invoke("transform",[jQuery]);
-		this.$el1 = $("#box1");
-		this.$el2 = $("#box2");
+		this.$el1 = $("#box1").css("transform", "none");
+		this.$el2 = $("#box2").css("transform", "none");
 	},
 	afterEach : function() {
-		this.$el1.css("transform", "none");
-		this.$el2.css("transform", "none");
 		cleanup();
 	}
 });
