@@ -7,6 +7,7 @@
     "dev-server": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "jsdoc": "node node_modules/jsdoc/jsdoc.js -c jsdoc.json",
     "test": "karma start",
+    "coverage": "karma start --coverage",
     "testee": "node node_modules/testee/bin/testee test/unit/index.html --browsers chrome"
   },
   "author": "NAVER Corp.",
@@ -18,6 +19,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-es2015-native-modules": "^6.9.4",
     "egjs-jsdoc-template": "*",
+    "isparta-loader": "^2.0.0",
     "husky": "^0.11.4",
     "iscroll": "^5.1.3",
     "jquery": "^1.7.0",
@@ -28,6 +30,7 @@
     "karma-qunit": "^1.2.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.1",
+    "karma-coverage": "^1.1.1",
     "lite-fixture": "^1.0.0",
     "qunitjs": "^2.1.1",
     "testee": "^0.3.0",
