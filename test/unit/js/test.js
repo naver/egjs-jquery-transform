@@ -11,7 +11,7 @@
 * Copyright (c) 2015 NAVER Corp.
 * egjs projects are licensed under the MIT license
 */
-import {toMatrix, toMatrix3d} from "../../../src/index.js";
+import {toMatrix, toMatrix3d} from "../../../src/transform";
 
 QUnit.config.reorder = false;
 function initializeElement() {

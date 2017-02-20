@@ -1,14 +1,13 @@
 {
-  "name": "eg.transform",
-  "version": "1.0.0",
-  "main": "src/index.js",
+  "name": "@egjs/transform",
+  "version": "2.0.0-rc.1",
+  "main": "src/transform.js",
   "scripts": {
     "build": "node node_modules/webpack/bin/webpack.js",
     "dev-server": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "jsdoc": "node node_modules/jsdoc/jsdoc.js -c jsdoc.json",
     "test": "karma start",
-    "coverage": "karma start --coverage",
-    "testee": "node node_modules/testee/bin/testee test/unit/index.html --browsers chrome"
+    "coverage": "karma start --coverage"
   },
   "author": "NAVER Corp.",
   "license": "MIT",
@@ -31,7 +30,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.1",
     "karma-coverage": "^1.1.1",
-    "lite-fixture": "^1.0.0",
+    "lite-fixture": "^1.0.2",
     "qunitjs": "^2.1.1",
     "testee": "^0.3.0",
     "webpack": "^2.2.0-rc.3",

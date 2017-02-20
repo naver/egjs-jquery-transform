@@ -2,9 +2,9 @@ var webpack = require("webpack");
 
 module.exports = {
 	entry: {
-		"eg.transform": "./src/index.js",
-		"eg.transform.min": "./src/index.js",
-		"eg.transform.test": "./test/unit/js/test.js"
+		"transform": "./src/transform.js",
+		"transform.min": "./src/transform.js",
+		"transform.test": "./test/unit/js/test.js"
 	},
 	output: {
 		path: __dirname + "/dist",

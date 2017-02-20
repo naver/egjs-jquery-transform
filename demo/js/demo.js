@@ -2,4 +2,4 @@
  * Copyright (c) NAVER Corp.
  */
 
-console.log("Hello eg.Transform!!!", eg.Transform);
+console.log("Hello egjs-transform!!!", eg.Transform);

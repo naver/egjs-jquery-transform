@@ -36,7 +36,7 @@
 			"url": ""
 		},
 		"meta": {
-			"title": "egjs::eg.Transform - API",
+			"title": "egjs::egjs-transform - API",
 			"description": "Extends jQuery animate in order to use &#39;transform&#39; property",
 			"keyword": "jQuery, UI Component, egjs, transform"
 		},

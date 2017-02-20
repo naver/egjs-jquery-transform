@@ -1,6 +1,6 @@
 {
-	"name": "eg.transform",
-	"version": "1.0.0",
+	"name": "egjs-transform",
+	"version": "2.0.0-rc.1",
 	"license": "MIT",
 	"keywords": [
 		"egjs",
@@ -14,5 +14,5 @@
 		"bower_components",
 		"node_modules"
 	],
-	"main": "dist/eg.transform.js"
+	"main": "dist/transform.js"
 }
