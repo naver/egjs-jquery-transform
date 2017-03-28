@@ -20,7 +20,7 @@ export class Transform {
 
 		this.$ = jQuery;
 
-		this.$.fx.step.transform = (fx) => {
+		this.$.fx.step.transform = fx => {
 			fx.rateFn = fx.rateFn || this.rateFn(fx.elem, fx.start, fx.end);
 			this.$.style(fx.elem, "transform", fx.rateFn(fx.pos));
 		};
@@ -30,63 +30,63 @@ export class Transform {
 	 * Get a 'px' converted value if it has a %.
 	 * Otherwise it returns value appened with 'px'.
 	 */
-	getConverted(val, base) {
-		var ret = val;
-		var num = val.match(/((-|\+)*[0-9]+)%/);
+	static getConverted(val, base) {
+		let ret = val;
+		const num = val.match(/((-|\+)*[0-9]+)%/);
 
 		if (num && num.length >= 1) {
-			ret = base * (parseFloat(num[1]) / 100) + "px";
+			ret = `${base * (parseFloat(num[1]) / 100)}px`;
 		} else if (val.indexOf("px") === -1) {
-			ret = val + "px";
+			ret = `${val}px`;
 		}
 
 		return ret;
 	}
 
 	correctUnit(transform, width, height) {
-		var m;
-		var ret = "";
-		var arr = transform.split(")");
+		let m;
+		let ret = "";
+		const arr = transform.split(")");
 
-		for (var i = 0, len = arr.length - 1; i < len; i++) {
-			var name = arr[i];
+		for (let i = 0, len = arr.length - 1; i < len; i++) {
+			let name = arr[i];
 
 			// '%' is only meaningful on translate.
 			if ((m = name.match(/(translate([XYZ]|3d)?|rotate)\(([^)]*)/)) && m.length > 1) {
 				if (m[1] === "rotate") {
 					if (m[3].indexOf("deg") === -1) {
-						name = m[1] + "(" + m[3] + "deg";
+						name = `${m[1]}(${m[3]}deg`;
 					}
 				} else {
+					// 2d, 3d
+					const nums = m[3].split(",");
+					const bases = [width, height, 100];
+
 					switch (m[2]) {
-					case "X":
-						name = m[1] + "(" + this.getConverted(m[3], width);
-						break;
-					case "Y":
-						name = m[1] + "(" +  this.getConverted(m[3], height);
-						break;
-					case "Z":
-
-						//Meaningless. Do nothing
-						break;
-					default://2d, 3d
-						var nums = m[3].split(",");
-						var bases = [width, height, 100];
-
-						for (var k = 0, l = nums.length; k < l; k++) {
-							nums[k] = this.getConverted(nums[k], bases[k]);
-						}
-						name = m[1] + "(" + nums.join(",");
-						break;
+						case "X":
+							name = `${m[1]}(${this.getConverted(m[3], width)}`;
+							break;
+						case "Y":
+							name = `${m[1]}(${this.getConverted(m[3], height)}`;
+							break;
+						case "Z":
+							// Meaningless. Do nothing
+							break;
+						default:
+							for (let k = 0, l = nums.length; k < l; k++) {
+								nums[k] = this.getConverted(nums[k], bases[k]);
+							}
+							name = `${m[1]}(${nums.join(",")}`;
+							break;
 					}
 				}
 			}
 
-			name = " " + name + ")";
+			name = ` ${name})`;
 			ret += name;
 		}
 
-		//Remove wrong '%'s and '+=' because it cannot be translated to a matrix.
+		// Remove wrong '%'s and '+=' because it cannot be translated to a matrix.
 		ret = ret.replace("%", "").replace("+=", "");
 		return ret;
 	}
@@ -100,84 +100,87 @@ export class Transform {
 	 * In advance, convert a string number to a float number with an unit for the use of transformByPos,
 	 * which is called very frequently.
 	 */
-	toParsedFloat(val) {
-		var m = val.match(/((-|\+)*[\d|\.]+)(px|deg|rad)*/);
+	static toParsedFloat(val) {
+		const m = val.match(/((-|\+)*[\d|.]+)(px|deg|rad)*/);
+		let ret;
+
 		if (m && m.length >= 1) {
-			return {"num": parseFloat(m[1]), "unit": m[3]};
+			ret = {"num": parseFloat(m[1]), "unit": m[3]};
 		}
+		return ret;
 	}
 
 	getTransformGenerateFunction(transform) {
-		var splitted = transform.split(")");
-		var list = [];
-		var transformByPos;//fn
+		const splitted = transform.split(")");
+		const list = [];
 
-		//Make parsed transform list.
-		for (var i = 0, len = splitted.length - 1; i < len; i++) {
-			var parsed = this.parseStyle(splitted[i]);
+		// Make parsed transform list.
+		for (let i = 0, len = splitted.length - 1; i < len; i++) {
+			const parsed = this.parseStyle(splitted[i]);
 
 			parsed[1] = this.$.map(parsed[1], this.toParsedFloat);
 			list.push(parsed);
 		}
 
-		transformByPos = pos => {
-			var transform = "";
-			var defaultVal = 0;
+		const transformByPos = pos => {
+			let ret = "";
+			let defaultVal = 0;
 
-			this.$.each(list, (i) => {
+			this.$.each(list, i => {
 				if (list[i][0].indexOf("scale") >= 0) {
 					defaultVal = 1;
 				} else {
 					defaultVal = 0;
 				}
 
-				var valStr = this.$.map(list[i][1], (value) => {
-					var val = value.num;
-					defaultVal === 1 && (val = val - 1);
+				const valStr = this.$.map(list[i][1], value => {
+					let val = value.num;
+
+					defaultVal === 1 && (val -= 1);
 					return (defaultVal + val * pos) + (value.unit || "");
 				}).join(",");
 
-				transform += list[i][0] + "(" + valStr + ") ";
+				ret += `${list[i][0]}(${valStr}) `;
 			});
 
-			return transform;
+			return ret;
 		};
 
 		return transformByPos;
 	}
 
 	rateFn(element, startTf, endTf) {
-		var isRelative = endTf.indexOf("+=") >= 0;
-		var start;
-		var end;
-		var basePos;
+		const isRelative = endTf.indexOf("+=") >= 0;
+		let start;
+		let end;
+		let basePos;
 
 		// Convert translate unit to 'px'.
-		endTf = this.correctUnit(endTf,
+		const endTfInPixel = this.correctUnit(endTf,
 					parseFloat(this.$.css(element, "width")) || 0,
 					parseFloat(this.$.css(element, "height")) || 0);
 
 		if (isRelative) {
 			start = (!startTf || startTf === "none") ?
 						"matrix(1, 0, 0, 1, 0, 0)" : startTf;
-			end = this.getTransformGenerateFunction(endTf);
+			end = this.getTransformGenerateFunction(endTfInPixel);
 		} else {
 			start = this.toMatrixArray(startTf);
-			basePos = this.toMatrixArray("none");//transform base-position
+			basePos = this.toMatrixArray("none"); // transform base-position
 
-			//If the type of matrix is not equal, then match to matrix3d
+			// If the type of matrix is not equal, then match to matrix3d
 			if (start[1].length < basePos[1].length) {
 				start = this.toMatrix3d(start);
 			} else if (start[1].length > basePos[1].length) {
 				basePos = this.toMatrix3d(basePos);
 			}
 
-			end = this.getTransformGenerateFunction(endTf);
+			end = this.getTransformGenerateFunction(endTfInPixel);
 		}
 
-		return (pos) => {
-			var result = [];
-			var ret = "";//matrix for interpolated value from current to base(1, 0, 0, 1, 0, 0)
+		return pos => {
+			const result = [];
+			let ret = ""; // matrix for interpolated value from current to base(1, 0, 0, 1, 0, 0)
 
 			if (isRelative) {
 				// This means a muliply between a matrix and a transform.
@@ -187,7 +190,7 @@ export class Transform {
 			if (pos === 1) {
 				ret = this.data2String(basePos);
 			} else {
-				for (var i = 0, s, e, l = start[1].length; i < l; i++) {
+				for (let i = 0, s, e, l = start[1].length; i < l; i++) {
 					s = parseFloat(start[1][i]);
 					e = parseFloat(basePos[1][i]);
 
@@ -207,42 +210,48 @@ export class Transform {
 	 * {matrix : [1, 0, 1, 0, 100, 0]} --> matrix(1, 0, 1, 0, 100, 0)
 	 */
 	data2String(property) {
-		var name;
-		var tmp = [];
+		let name;
+		const tmp = [];
 
 		if (this.$.isArray(property)) {
 			name = property[0];
-			return name + "(" + property[1].join(this.unit(name) + ",") + this.unit(name) + ")";
+			return `${name}(${property[1].join(this.unit(name))},${this.unit(name)})`;
 		} else {
 			for (name in property) {
 				tmp.push(name);
 			}
 
 			return this.$.map(tmp, function(v) {
-				return v + "(" +  property[v] + this.unit(v) + ")";
+				return `${v}(${property[v]}${this.unit(v)})`;
 			}).join(" ");
 		}
 	}
 
-	unit(name) {
-		return name.indexOf("translate") >= 0 ?
-				"px" : name.indexOf("rotate") >= 0 ? "deg" : "";
+	static unit(name) {
+		let ret;
+
+		if (name.indexOf("translate") >= 0) {
+			ret = "px";
+		} else if (name.indexOf("rotate") >= 0) {
+			ret = "deg";
+		} else {
+			ret = "";
+		}
+		return ret;
 	}
 
 	// ["translate" , ["10", "20"]]
 	parseStyle(property) {
-		var m = property.match(/(\b\w+?)\((\s*[^\)]+)/);
-		var name;
-		var value;
-		var result = ["",""];
+		const m = property.match(/(\b\w+?)\((\s*[^)]+)/);
+		let name;
+		let value;
+		let result = ["", ""];
 
 		if (m && m.length > 2) {
 			name = m[1];
 			value = m[2].split(",");
-			value = this.$.map(value, (v) => {
-				return this.$.trim(v);
-			});
-			result = [ this.$.trim(name), value ];
+			value = this.$.map(value, v => this.$.trim(v));
+			result = [this.$.trim(name), value];
 		}
 		return result;
 	}
@@ -253,22 +262,19 @@ export class Transform {
 	 * eg. matrix(1, 0, 0, 1, 0, 0) ==>  ["matrix", [1, 0, 0, 1, 0, 0]]
 	 * matrix3d(1,0,0,0,0,1,-2.44929e-16,0,0,2.44929e-16,1,0,0,0,0,1)
 	 */
-	toMatrixArray(matrixStr) {
-		var matched;
-
+	static toMatrixArray(matrixStr) {
 		if (!matrixStr || matrixStr === "none") {
-			return ["matrix", [ "1", "0", "0", "1", "0", "0"] ];
+			return ["matrix", ["1", "0", "0", "1", "0", "0"]];
 		}
 
-		matrixStr = matrixStr.replace(/\s/g, "");
-		matched = matrixStr.match(/(matrix)(3d)*\((.*)\)/);
+		const matched = matrixStr.replace(/\s/g, "").match(/(matrix)(3d)*\((.*)\)/);
 
 		return [matched[1] + (matched[2] || ""), matched[3].split(",")];
 	}
 
-	toMatrix3d(matrix) {
-		var name = matrix[0];
-		var val = matrix[1];
+	static toMatrix3d(matrix) {
+		const name = matrix[0];
+		const val = matrix[1];
 
 		if (name === "matrix3d") {
 			return matrix;
@@ -276,15 +282,16 @@ export class Transform {
 
 		// matrix(a, b, c, d, tx, ty) is a shorthand for matrix3d(a, b, 0, 0, c, d, 0, 0, 0, 0, 1, 0, tx, ty, 0, 1)
 		return [
-			name + "3d", [val[0], val[1], "0", "0",
-						val[2], val[3], "0", "0",
-						"0", "0", "1", "0",
-						val[4], val[5], "0", "1"]
+			`${name}3d`, [val[0], val[1], "0", "0",
+				val[2], val[3], "0", "0",
+				"0", "0", "1", "0",
+				val[4], val[5], "0", "1"],
 		];
 	}
 }
 
-let trsf = new Transform($ || jQuery);
+const trsf = new Transform($ || jQuery);
 const toMatrix = trsf.toMatrixArray;
 const toMatrix3d = trsf.toMatrix3d;
-export { toMatrix3d, toMatrix };
+
+export {toMatrix3d, toMatrix};
