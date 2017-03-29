@@ -3,18 +3,20 @@ module.exports = function(config) {
 		// test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-		reporters:['dots', 'progress'],
+    reporters: ['mocha'],
 		browsers: [],
-		frameworks: ['qunit'],
+    frameworks: ['mocha', 'chai', 'sinon'],
 		files: [
+      './node_modules/phantomjs-polyfill/bind-polyfill.js',
+      './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
 			// vendor files
 			'node_modules/jquery/dist/jquery.min.js',
 			'node_modules/lite-fixture/index.js',
 			// src files
-			{pattern: "test/unit/**/*.js"}
+			'./test/**/*.spec.js'
 		],
 		webpack: {
-			devtool: 'source-map',
+			devtool: 'inline-source-map',
 			module: {
 				rules: [
 					{
@@ -28,9 +30,43 @@ module.exports = function(config) {
 		// // preprocess matching files before serving them to the browser
     // // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/unit/**/*.js': config.coverage ? ['webpack'] : ['webpack', 'sourcemap']
-    }
-	};
+      './test/**/*.spec.js': config.coverage ? ['webpack'] : ['webpack', 'sourcemap']
+    },
+
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['mocha'],
+
+    // web server port
+    port: 9876,
+
+    // enable / disable colors in the output (reporters and logs)
+    colors: true,
+
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_INFO,
+
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true,
+
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: [],
+
+    webpackServer: {
+      noInfo: true
+    },
+
+    // Concurrency level
+    // how many browser should be started simultaneous
+    concurrency: Infinity,
+    singleRun: false,
+    captureTimeout: 60000
+  };
+
+  karmaConfig.browsers.push(config.chrome ? "Chrome" : "PhantomJS");
 
 	if(config.coverage) {
     karmaConfig.reporters.push("coverage");
@@ -50,9 +86,6 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     karmaConfig.singleRun = true;
-  } else {
-    karmaConfig.browsers.push("Chrome");
-    karmaConfig.singleRun = false;
   }
 
   config.set(karmaConfig);

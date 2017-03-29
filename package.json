@@ -1,13 +1,17 @@
 {
   "name": "@egjs/transform",
   "version": "2.0.0-rc.1",
-  "main": "src/transform.js",
+  "main": "src/main.js",
   "scripts": {
-    "build": "node node_modules/webpack/bin/webpack.js",
-    "dev-server": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "jsdoc": "node node_modules/jsdoc/jsdoc.js -c jsdoc.json",
+    "start": "webpack-dev-server --env.mode server",
+    "build": "webpack --env.mode production --config webpack.config.js",
     "test": "karma start",
-    "coverage": "karma start --coverage"
+    "test:chrome": "karma start --chrome",
+    "lint": "eslint src",
+    "jsdoc": "jsdoc -c jsdoc.json",
+    "coverage": "karma start --coverage",
+    "prepush": "npm run lint",
+    "commitmsg": "node config/validate-commit-msg.js"
   },
   "author": "NAVER Corp.",
   "license": "MIT",
