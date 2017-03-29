@@ -6,7 +6,7 @@
 <footer>(optional)
 
 ============= Sample ==============
-fix(persist): update aborting animation logic
+fix(transform): update aborting animation logic
 
 Abort the animating post process when "tap" occurs or velocity is zero at inside border.
 
