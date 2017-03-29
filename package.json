@@ -4,7 +4,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "webpack-dev-server --env.mode server",
-    "build": "webpack --env.mode production --config webpack.config.js && webpack --env.mode pkgd --config webpack.config.js",
+    "build": "webpack --env.mode production --config webpack.config.js",
     "test": "karma start",
     "test:chrome": "karma start --chrome",
     "lint": "eslint src",

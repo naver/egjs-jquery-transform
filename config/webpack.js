@@ -4,12 +4,12 @@ var StringReplacePlugin = require("string-replace-webpack-plugin");
 
 module.exports = {
 	entry: {
-		"egjs-transform": "./src/transform.js"
+		"transform": "./src/transform.js"
 	},
 	output: {
 		path: path.resolve(__dirname, "../dist"),
 		filename: "[name].js",
-		library:  ["eg", "transform" ],
+		library:  ["eg", "transform"],
 		libraryTarget: "umd",
 	},
 	externals: [
