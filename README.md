@@ -42,7 +42,8 @@ eg.Transform has the dependencies for the following libraries:
 
 ### 4. Use eg.Transform
 ```javascript
-$("#area").animate({});//TODO: make sample
+var $el = $("#area");
+$el.animate({"transform": "translate(100px) rotate(30deg)"});
 ```
 
 ## Bug Report

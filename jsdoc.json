@@ -4,7 +4,7 @@
 		"dictionaries": ["jsdoc","closure"]
 	},
 	"source": {
-		"include": ["src"],
+		"include": ["src", "README.md"],
 		"includePattern": ".+\\.js(doc|x)?$",
 		"excludePattern": "(^|\\/|\\\\)_"
 	},
@@ -36,13 +36,13 @@
 			"url": ""
 		},
 		"meta": {
-			"title": "egjs::egjs-transform - API",
+			"title": "egjs::eg.Transform - API",
 			"description": "Extends jQuery animate in order to use &#39;transform&#39; property",
 			"keyword": "jQuery, UI Component, egjs, transform"
 		},
 		"linenums": true,
 		"link": {
-			"canonical": "http://naver.github.io/egjs/latest/doc/"
+			"canonical": "http://naver.github.io/egjs/latest/doc/jQuery.html#animate"
 		}
 	},
 	"markdown": {
