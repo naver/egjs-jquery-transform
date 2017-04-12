@@ -4,7 +4,7 @@ var StringReplacePlugin = require("string-replace-webpack-plugin");
 
 module.exports = {
 	entry: {
-		"transform": "./src/transform.js"
+		"transform": "./src/index.js"
 	},
 	output: {
 		path: path.resolve(__dirname, "../dist"),
@@ -33,7 +33,7 @@ module.exports = {
 				exclude: /(node_modules)/,
 				loader: "babel-loader",
 				query: {
-					"presets": [ 
+					"presets": [
 						[
 							"es2015",
 							{
@@ -47,7 +47,7 @@ module.exports = {
 					]
 				}
 			},
-			{ 
+			{
 				test: /(\.js)$/,
 				loader: StringReplacePlugin.replace({
 					replacements: [

@@ -2,4 +2,13 @@
  * Copyright (c) NAVER Corp.
  */
 
-console.log("Hello egjs-transform!!!", eg.Transform);
+window.onload = function() {
+	// Animate element infinitely
+	var $rectBox = $("#rectBox");
+
+	function rotate() {
+		$rectBox.animate({"transform": "rotate(360deg)"}, "slow", rotate);
+	}
+
+	rotate();
+}
