@@ -1,38 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>demo::egjs-transform</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.testBackground {
-	position:relative;
-	left:0px;
-	top:0px;
-	width:300px;
-	height:300px;
-	background-color:yellow;
-}
-
-.test {
-	width:100px;
-	height:100px;
-	background-color: red;
-	color:white;
-	position: relative;
-}
-</style>
-</head>
-<body>
-<!-- 1) Load jQuery -->
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<!-- 2) Load egjs packaged file -->
-<script src="../dist/transform.js"></script>
-<script src="js/demo.js"></script>
-
-<div class="testBackground">
-	<div id="rectBox" class="test">Box</div>
-</div>
-</body>
-</html>
+---
+layout: page
+title: "Demo :: egjs Transform"
+component: "Transform"
+desc: A method extended from the jQuery animate() method. It supports CSS transform property and 3D acceleration.
+github:
+  user: naver
+  repo: egjs-transform
+js:
+- dist/transform.min.js
+- assets/js/demo.js
+css:
+- assets/css/demo.css
+---
