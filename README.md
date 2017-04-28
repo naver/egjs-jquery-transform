@@ -1,4 +1,4 @@
-# eg.Transform
+# egjs-transform
 A method extended from the jQuery animate() method. It supports CSS transform property and 3D acceleration.
 
 ## Documentation
@@ -8,7 +8,7 @@ A method extended from the jQuery animate() method. It supports CSS transform pr
 * An advanced demo is under construction.
 
 ## Supported Browsers
-The following table shows browsers supported by eg.Transform
+The following table shows browsers supported by egjs-transform
 
 |Internet Explorer|Chrome|Firefox|Safari|iOS|Android|
 |---|---|---|---|---|---|
@@ -17,7 +17,7 @@ The following table shows browsers supported by eg.Transform
 
 
 ## Dependency
-eg.Transform has the dependencies for the following libraries:
+egjs-transform has the dependencies for the following libraries:
 
 |[jquery](https://jquery.com)|
 |----|
@@ -40,7 +40,7 @@ eg.Transform has the dependencies for the following libraries:
 <div id="area"></div>
 ```
 
-### 4. Use eg.Transform
+### 4. Use egjs-transform
 ```javascript
 var $el = $("#area");
 $el.animate({"transform": "translate(100px) rotate(30deg)"});
@@ -52,7 +52,7 @@ If you find a bug, please report it to us using the [Issues](https://github.com/
 
 
 ## License
-eg.Transform is released under the [MIT license](http://naver.github.io/egjs/license.txt).
+egjs-transform is released under the [MIT license](http://naver.github.io/egjs/license.txt).
 
 ```
 Copyright (c) 2015 NAVER Corp.
