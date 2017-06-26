@@ -10,3 +10,9 @@ jsdoc.json
 *.txt
 *.md
 *.log
+
+coverage/
+node_modules/
+.github
+.babelrc
+mocha.opts
