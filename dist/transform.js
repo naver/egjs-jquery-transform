@@ -9,14 +9,14 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
+		module.exports = factory(require("jquery"));
 	else if(typeof define === 'function' && define.amd)
-		define([], factory);
+		define(["jquery"], factory);
 	else if(typeof exports === 'object')
-		exports["transform"] = factory();
+		exports["transform"] = factory(require("jquery"));
 	else
-		root["eg"] = root["eg"] || {}, root["eg"]["transform"] = factory();
-})(this, function() {
+		root["eg"] = root["eg"] || {}, root["eg"]["transform"] = factory(root["jQuery"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -87,18 +87,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var win = typeof window !== "undefined" && window || {};
-
-exports.window = win;
-var jQuery = exports.jQuery = win.jQuery;
+module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 /* 1 */
@@ -112,9 +103,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.rateFn = exports.toMatrix = exports.toMatrix3d = undefined;
 
-var _browser = __webpack_require__(0);
+var _jquery = __webpack_require__(0);
 
-var $ = _browser.jQuery;
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var $ = _jquery2.default;
 
 /**
  * Convert matrix string to array type.
@@ -388,11 +383,15 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _browser = __webpack_require__(0);
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
 
 var _transform = __webpack_require__(1);
 
-var $ = _browser.jQuery;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var $ = _jquery2.default;
 
 /**
  * @namespace jQuery
