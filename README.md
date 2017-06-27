@@ -1,20 +1,22 @@
-# egjs-transform
+# egjs-transform [![npm version](https://badge.fury.io/js/%40egjs%2Ftransform.svg)](https://badge.fury.io/js/%40egjs%2Ftransform) [![Build Status](https://travis-ci.org/naver/egjs-transform.svg?branch=master)](https://travis-ci.org/naver/egjs-transform) 
+
+[![Issue Stats](http://issuestats.com/github/naver/egjs-transform/badge/pr?style=flat)](http://issuestats.com/github/naver/egjs-transform)
+[![Issue Stats](http://issuestats.com/github/naver/egjs-transform/badge/issue?style=flat)](http://issuestats.com/github/naver/egjs-transform)
+
 A method extended from the jQuery animate() method. It supports CSS transform property and 3D acceleration.
 
 ## Documentation
 * API Documentation
-    - Latest: [http://naver.github.io/egjs/latest/doc/jQuery.html#animate](http://naver.github.io/egjs/latest/doc/jQuery.html#animate)
-    - Specific version: [http://naver.github.io/egjs/[VERSION]/doc/jQuery.html#animate](http://naver.github.io/egjs/[VERSION]/doc/jQuery.html#animate)
-* An advanced demo is under construction.
+    - Latest: [https://naver.github.io/egjs-transform/release/latest/doc/](https://naver.github.io/egjs-transform/release/latest/doc/)
+    - Specific version: [https://naver.github.io/egjs-transform/release/[VERSION]/doc/](https://naver.github.io/egjs-transform/release/[VERSION]/doc/)
+
 
 ## Supported Browsers
-The following table shows browsers supported by egjs-transform
+The following are the supported browsers.
 
 |Internet Explorer|Chrome|Firefox|Safari|iOS|Android|
 |---|---|---|---|---|---|
 |10+|Latest|Latest|Latest|7+|2.3+(except 3.x)|
-
-
 
 ## Dependency
 egjs-transform has the dependencies for the following libraries:
@@ -23,27 +25,31 @@ egjs-transform has the dependencies for the following libraries:
 |----|
 |1.7.0+|
 
-## How to Use
-### 1. Load dependency library before transform.js (or transform.min.js) load.
-```html
-<script src="../node_modules/jquery/jquery.js"></script>
-```
 
-### 2. Load transform.js
-```html
-<script src="../dist/transform.js"></script>
-```
+## Download and Installation
 
-### 3. Make a target element
-```html
-<!-- Target DOM -->
-<div id="area"></div>
-```
+Download dist files from repo directly or install it via npm. 
 
-### 4. Use egjs-transform
-```javascript
-var $el = $("#area");
-$el.animate({"transform": "translate(100px) rotate(30deg)"});
+### For development (Uncompressed)
+
+You can download the uncompressed files for development
+
+- Latest : https://naver.github.io/egjs-transform/release/latest/dist/transform.js
+- Specific version : https://naver.github.io/egjs-transform/release/[VERSION]/dist/transform.js
+
+### For production (Compressed)
+
+You can download the compressed files for production
+
+- Latest : https://naver.github.io/egjs-transform/release/latest/dist/transform.min.js
+- Specific version : https://naver.github.io/egjs-transform/release/[VERSION]/dist/transform.min.js
+
+### Installation with npm
+
+The following command shows how to install egjs-transform using npm.
+
+```bash
+$ npm install @egjs/transform
 ```
 
 ## Bug Report
@@ -53,6 +59,7 @@ If you find a bug, please report it to us using the [Issues](https://github.com/
 
 ## License
 egjs-transform is released under the [MIT license](http://naver.github.io/egjs/license.txt).
+
 
 ```
 Copyright (c) 2015 NAVER Corp.

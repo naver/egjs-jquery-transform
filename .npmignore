@@ -1,18 +1,32 @@
-bower_components/
-node_modules/
-assets/
-config/
-report/
-tc/
-test/
+#configs
+config
+bower.json
+
+#tests
+test
+karma.conf.js
+
+#build tools
+webpack.*.js
+.travis.yml
+.codeclimate.yml
+
+#linters
+.eslintrc*
+
+#docs
+doc
+demo
 jsdoc.json
-*.js
-*.txt
-*.md
-*.log
+README.md
+
+#editor settings
+.idea
+.editorconfig
 
 coverage/
 node_modules/
 .github
 .babelrc
 mocha.opts
+demo

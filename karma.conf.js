@@ -1,79 +1,62 @@
 module.exports = function(config) {
-	var karmaConfig = {
-		// test results reporter to use
-		// possible values: 'dots', 'progress'
-		// available reporters: https://npmjs.org/browse/keyword/karma-reporter
-		frameworks: ['mocha', 'chai', 'sinon'],
+  var karmaConfig = {
+    frameworks: ['mocha', 'chai', 'sinon'],
 
-		files: [
-			'./node_modules/phantomjs-polyfill/bind-polyfill.js',
-			'./node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
-			// vendor files
+    // list of files / patterns to load in the browser
+    files: [
 			'./node_modules/jquery/dist/jquery.min.js',
-			'./node_modules/lite-fixture/index.js',
-			// src files
-			'./test/**/*.spec.js'
-		],
+      './node_modules/lite-fixture/index.js',
+      './test/unit/**/*.spec.js'
+    ],
 
-		client: {
-			mocha: {
-				opts: './mocha.opts'
-			}
-		},
+    client: {
+      mocha: {
+        opts: './mocha.opts'
+      }
+    },
 
-		webpack: {
-			devtool: 'inline-source-map',
-			module: {
-				rules: [
-					{
-						test: /(\.js)$/,
-						exclude: /(node_modules)/,
-						loader: 'babel-loader'
-					}
-				]
-			}
-		},
+    webpack: {
+      devtool: 'inline-source-map',
+      module: {
+          rules: [
+              {
+                  test: /\.js$/,
+                  exclude: /node_modules/,
+                  loader: "babel-loader",
+              }
+          ]
+      }
+    },
 
-		// preprocess matching files before serving them to the browser
-		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-		preprocessors: {
-			'./test/**/*.spec.js': config.coverage ? ['webpack'] : ['webpack', 'sourcemap']
-		},
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {
+      './test/**/*.spec.js': config.coverage ? ['webpack'] : ['webpack', 'sourcemap']
+    },
 
-		// test results reporter to use
-		// possible values: 'dots', 'progress'
-		// available reporters: https://npmjs.org/browse/keyword/karma-reporter
-		reporters: ['mocha'],
+    browsers: [],
 
-		// start these browsers
-		// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-		browsers: [],
+    reporters: ['mocha'],
+    webpackMiddleware: {
+        noInfo: true
+    }
+  };
 
-		webpackServer: {
-			noInfo: true
-		},
+  karmaConfig.browsers.push(config.chrome ? "Chrome" : "ChromeHeadless");
 
-		webpackMiddleware: {
-			noInfo: true
-		}
-	};
-
-	karmaConfig.browsers.push(config.chrome ? "Chrome" : "PhantomJS");
-
-	if(config.coverage) {
-		karmaConfig.reporters.push('coverage-istanbul');
-		karmaConfig.coverageIstanbulReporter = {
-			reports: [ 'text-summary', 'html'],
-			dir: './coverage'
-		};
-
-		karmaConfig.webpack.module.rules.unshift({
+  if(config.coverage) {
+    karmaConfig.reporters.push('coverage-istanbul');
+    karmaConfig.coverageIstanbulReporter = {
+      reports: [ 'text-summary', 'html'],
+      dir: './coverage'
+    };
+    karmaConfig.webpack.module.rules.unshift({
         test: /\.js$/,
         exclude: /(node_modules|test)/,
         loader: 'istanbul-instrumenter-loader'
     });
     karmaConfig.singleRun = true;
-	}
+  }
 
-	config.set(karmaConfig);
+  config.set(karmaConfig);
 };
