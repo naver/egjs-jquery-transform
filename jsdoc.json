@@ -11,11 +11,12 @@
 	"opts": {
 		"template": "node_modules/egjs-jsdoc-template",
 		"destination": "./doc/",
+		"ignores": ["eg.Component"],
 		"expendsItemMembers": true
 	},
 	"plugins": [
 		"plugins/markdown",
-		"node_modules/egjs-jsdoc-template/jsdoc-plugin/ko", 
+		"node_modules/egjs-jsdoc-template/jsdoc-plugin/ko",
 		"node_modules/egjs-jsdoc-template/jsdoc-plugin/group",
 		"node_modules/egjs-jsdoc-template/jsdoc-plugin/codepen",
 		"node_modules/egjs-jsdoc-template/jsdoc-plugin/support"
@@ -26,9 +27,9 @@
 		"default": {
 			"outputSourceFiles" : true
 		},
-		"applicationName": "egjs",
+		"applicationName": "eg.Transform",
 		"disqus": "egjs",
-		"googleAnalytics": "",
+		"googleAnalytics": "UA-70842526-21",
 		"openGraph": {
 			"title": "",
 			"type": "website",
@@ -37,13 +38,13 @@
 			"url": ""
 		},
 		"meta": {
-			"title": "egjs::eg.Transform - API",
-			"description": "Extends jQuery animate in order to use &#39;transform&#39; property",
+			"title": "egjs::transform - API",
+			"description": "A method extended from the jQuery animate() method. It supports CSS transform property and 3D acceleration.",
 			"keyword": "jQuery, UI Component, egjs, transform"
 		},
 		"linenums": true,
 		"link": {
-			"canonical": "http://naver.github.io/egjs/latest/doc/jQuery.html#animate"
+			"canonical": "http://naver.github.io/egjs/"
 		}
 	},
 	"markdown": {

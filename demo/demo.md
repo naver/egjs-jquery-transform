@@ -1,11 +1,8 @@
-#### transform demo
+### Demo
 
-<div class="testBackground">
-<div id="rectBox" class="test">Box</div>
-</div>
-<br/>
+{% include_relative assets/html/demo.html %}
 
-```javascript
+```js
 // Animate element infinitely
 var $rectBox = $("#rectBox");
 

@@ -3,35 +3,37 @@ IE 10+, latest of Chrome/FF/Safari, iOS 7+ and Android 2.3+ (except 3.x)
 
 ### Quick steps to use:
 
-#### Load files
+
+#### Set up your HTML
 
 ``` html
-<!-- 1) Load jQuery -->
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<!-- 2) Load egjs packaged file -->
-<script src="https://naver.github.io/egjs-transform/dist/pkgd/transform.min.js"></script>
+<div id="area">
 ```
 
-#### Animate jquery element with transform property
+#### Load files or import library
 
-``` javascript
-var $el = $("#anim");
-$el.animate({"transform": "translate(100px) rotate(30deg)"});
+
+##### ES5
+``` html
+{% for dist in site.data.egjs.dist %}
+<script src="//{{ site.data.egjs.github.user }}.github.io/{{ site.data.egjs.github.repo }}/{{ dist }}"></script>
+{% endfor %}
 ```
 
-#### You can use relative values.
-
-``` javascript
-var $el = $("#anim");
-$el.animate({"transform": "+=translate(100px)"});
+##### ES6+
+```js
+import "@egjs/transform";
 ```
 
-#### You can also use chaining.
-``` javascript
-var $el = $("#anim");
-$el
-	.animate({"transform": "translate(100px)"})
-	.animate({"transform": "rotate(30deg)"})
-	.animate({"transform": "translate(-100px)"});
+### Initialize
+
+```javascript
+// Animate element infinitely
+var $rectBox = $("#rectBox");
+
+function rotate() {
+	$rectBox.animate({"transform": "rotate(360deg)"}, "slow", rotate);
+}
+
+rotate();
 ```
