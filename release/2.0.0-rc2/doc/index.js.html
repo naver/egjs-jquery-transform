@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Source: index.js | egjs::transform - API</title>
+    
+    <meta name="description" content="A method extended from the jQuery animate() method. It supports CSS transform property and 3D acceleration." />
+    
+        <meta name="keywords" content="jQuery, UI Component, egjs, transform" />
+        <meta name="keyword" content="jQuery, UI Component, egjs, transform" />
+    
+    
+    
+    <meta property="og:title" content=""/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <link rel="canonical" href="http://naver.github.io/egjs/"/>
+    
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"monospaceLinks":true,"cleverLinks":true,"default":{"outputSourceFiles":true},"applicationName":"eg.Transform","disqus":"egjs","googleAnalytics":"UA-70842526-21","openGraph":{"title":"","type":"website","image":"","site_name":"","url":""},"meta":{"title":"egjs::transform - API","description":"A method extended from the jQuery animate() method. It supports CSS transform property and 3D acceleration.","keyword":"jQuery, UI Component, egjs, transform"},"linenums":true,"link":{"canonical":"http://naver.github.io/egjs/"}};
+    </script>
+    
+
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', config.googleAnalytics]);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="http://naver.github.io/egjs/">eg.Transform</a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+    
+        <!-- Non Grouping Version -->
+        
+            
+
+<li class="item" data-name="jQuery">
+    <span class="title">
+        <a href="jQuery.html">jQuery</a>
+        
+        <span class="static">static</span>
+        
+    </span>
+    <ul class="members itemMembers expends">
+    
+    </ul>
+    <ul class="typedefs itemMembers expends">
+    
+    </ul>
+    <ul class="methods itemMembers expends">
+    
+    <span class="subtitle">Methods</span>
+    
+        <li data-name="jQuery#animate"><a href="jQuery.html#animate">animate</a></li>
+    
+    </ul>
+    <ul class="events itemMembers expends">
+    
+    </ul>
+
+    
+    <span class="title" style="margin-top:10px"><a href="index.html">readme</a></span>
+
+</li>
+
+        
+    
+    </ul>
+</div>
+
+    <div class="main">
+        <h1 class="page-title" data-filename="index.js.html">Source: index.js</h1>
+        
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import jQuery from "jquery";
+import {rateFn} from "./transform";
+
+const $ = jQuery;
+
+/**
+ * @namespace jQuery
+ */
+if (!$) {
+	console.warn("jQuery is not defined.");
+} else {
+	/**
+	 * A method that extends the &lt;a href=http://api.jquery.com/animate/>.animate()&lt;/a> method provided by jQuery. With this method, you can use the transform property and 3D acceleration
+	 * @ko jQuery의&lt;a href=http://api.jquery.com/animate/>animate() 메서드&lt;/a>를 확장한 메서드. CSS의 transform 속성과 3D 가속을 사용할 수 있다.
+	 * @name jQuery#animate
+	 * @alias eg.Transform
+	 * @method
+	 * @param {Object} properties An object composed of the CSS property and value which will be applied to an animation&lt;ko>애니메이션을 적용할 CSS 속성과 값으로 구성된 객체&lt;/ko>
+	 * @param {Number|String} [duration=4000] Duration of the animation (unit: ms)&lt;ko>애니메이션 진행 시간(단위: ms)&lt;/ko>
+	 * @param {String} [easing="swing"] The easing function to apply to an animation&lt;ko>애니메이션에 적용할 easing 함수&lt;/ko>
+	 * @param {Function} [complete] A function that is called once the animation is complete.&lt;ko>애니메이션을 완료한 다음 호출할 함수&lt;/ko>
+	 *
+	 * @example
+	 * $("#box")
+	 * 		.animate({"transform" : "translate3d(150px, 100px, 0px) rotate(20deg) scaleX(1)"} , 3000)
+	 * 		.animate({"transform" : "+=translate3d(150px, 10%, -20px) rotate(20deg) scale3d(2, 4.2, 1)"} , 3000);
+	 * @see {@link http://api.jquery.com/animate/}
+	 *
+	 * @support {"ie": "10+", "ch" : "latest", "sf" : "latest", "edge" : "latest", "ios" : "7+", "an" : "2.3+ (except 3.x)"}
+	 */
+	$.fx.step.transform = fx => {
+		fx.rateFn = fx.rateFn || rateFn(fx.elem, fx.start, fx.end);
+		$.style(fx.elem, "transform", fx.rateFn(fx.pos));
+	};
+}
+
+export default $;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+
+        
+        <!-- disqus code -->
+        <div id="disqus_thread"></div>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <!-- // disqus code -->
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jun 27 2017 18:59:41 GMT+0900 (KST)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
