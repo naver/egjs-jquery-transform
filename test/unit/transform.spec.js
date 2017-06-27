@@ -1,4 +1,4 @@
-import "../../src/index";
+import jQuery from "../../src/index";
 import {toMatrix, toMatrix3d} from "../../src/transform";
 
 const $ = jQuery;

@@ -9,18 +9,18 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, "../dist"),
 		filename: "[name].js",
-		library:  ["eg", "transform"],
+		library:  [pkg.namespace.eg, "transform"],
 		libraryTarget: "umd",
 	},
 	externals: [
-	// 	{
-	// 	"eg.component": {
-	// 		commonjs: "eg.component",
-	// 		commonjs2: "eg.component",
-	// 		amd: "eg.component",
-	// 		root: ["eg", "Component"]
-	// 	}
-	// }
+		{
+			"jquery": {
+				commonjs: "jquery",
+				commonjs2: "jquery",
+				amd: "jquery",
+				root: pkg.namespace.jquery,
+			},
+		},
 	],
 	devServer: {
 		publicPath: "/dist/"

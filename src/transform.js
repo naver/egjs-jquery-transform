@@ -1,4 +1,4 @@
-import {jQuery} from "./browser";
+import jQuery from "jquery";
 
 const $ = jQuery;
 
