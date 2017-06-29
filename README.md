@@ -1,15 +1,10 @@
-# egjs-transform [![npm version](https://badge.fury.io/js/%40egjs%2Ftransform.svg)](https://badge.fury.io/js/%40egjs%2Ftransform) [![Build Status](https://travis-ci.org/naver/egjs-transform.svg?branch=master)](https://travis-ci.org/naver/egjs-transform) 
-
-[![Issue Stats](http://issuestats.com/github/naver/egjs-transform/badge/pr?style=flat)](http://issuestats.com/github/naver/egjs-transform)
-[![Issue Stats](http://issuestats.com/github/naver/egjs-transform/badge/issue?style=flat)](http://issuestats.com/github/naver/egjs-transform)
+# egjs-transform [![npm version](https://badge.fury.io/js/%40egjs%2Ftransform.svg)](https://badge.fury.io/js/%40egjs%2Ftransform) [![Build Status](https://travis-ci.org/naver/egjs-transform.svg?branch=master)](https://travis-ci.org/naver/egjs-transform)  [![Coverage Status](https://coveralls.io/repos/github/naver/egjs-transform/badge.svg?branch=master)](https://coveralls.io/github/naver/egjs-transform?branch=master)
 
 A method extended from the jQuery animate() method. It supports CSS transform property and 3D acceleration.
 
-## Documentation
-* API Documentation
-    - Latest: [https://naver.github.io/egjs-transform/release/latest/doc/](https://naver.github.io/egjs-transform/release/latest/doc/)
-    - Specific version: [https://naver.github.io/egjs-transform/release/[VERSION]/doc/](https://naver.github.io/egjs-transform/release/[VERSION]/doc/)
-
+## Documents
+- [Get Started and Demos](https://naver.github.io/egjs-transform/)
+- [API documentation](https://naver.github.io/egjs-transform/release/latest/doc/)
 
 ## Supported Browsers
 The following are the supported browsers.
