@@ -105,9 +105,9 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var $ = _jquery2.default;
+var $ = _jquery2["default"];
 
 /**
  * Convert matrix string to array type.
@@ -385,9 +385,9 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 var _transform = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var $ = _jquery2.default;
+var $ = _jquery2["default"];
 
 /**
  * @namespace jQuery
@@ -420,7 +420,7 @@ if (!$) {
 	};
 }
 
-exports.default = $;
+exports["default"] = $;
 module.exports = exports["default"];
 
 /***/ })
