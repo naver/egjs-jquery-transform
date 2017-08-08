@@ -1,10 +1,10 @@
-# egjs-transform [![npm version](https://badge.fury.io/js/%40egjs%2Ftransform.svg)](https://badge.fury.io/js/%40egjs%2Ftransform) [![Build Status](https://travis-ci.org/naver/egjs-transform.svg?branch=master)](https://travis-ci.org/naver/egjs-transform)  [![Coverage Status](https://coveralls.io/repos/github/naver/egjs-transform/badge.svg?branch=master)](https://coveralls.io/github/naver/egjs-transform?branch=master)
+# egjs-jquery-transform [![npm version](https://badge.fury.io/js/%40egjs%2Ftransform.svg)](https://badge.fury.io/js/%40egjs%2Ftransform) [![Build Status](https://travis-ci.org/naver/egjs-jquery-transform.svg?branch=master)](https://travis-ci.org/naver/egjs-jquery-transform)  [![Coverage Status](https://coveralls.io/repos/github/naver/egjs-jquery-transform/badge.svg?branch=master)](https://coveralls.io/github/naver/egjs-jquery-transform?branch=master)
 
 A method extended from the jQuery animate() method. It supports CSS transform property and 3D acceleration.
 
 ## Documents
-- [Get Started and Demos](https://naver.github.io/egjs-transform/)
-- [API documentation](https://naver.github.io/egjs-transform/release/latest/doc/)
+- [Get Started and Demos](https://naver.github.io/egjs-jquery-transform/)
+- [API documentation](https://naver.github.io/egjs-jquery-transform/release/latest/doc/)
 
 ## Supported Browsers
 The following are the supported browsers.
@@ -14,7 +14,7 @@ The following are the supported browsers.
 |10+|Latest|Latest|Latest|7+|2.3+(except 3.x)|
 
 ## Dependency
-egjs-transform has the dependencies for the following libraries:
+egjs-jquery-transform has the dependencies for the following libraries:
 
 |[jquery](https://jquery.com)|
 |----|
@@ -29,19 +29,19 @@ Download dist files from repo directly or install it via npm.
 
 You can download the uncompressed files for development
 
-- Latest : https://naver.github.io/egjs-transform/release/latest/dist/transform.js
-- Specific version : https://naver.github.io/egjs-transform/release/[VERSION]/dist/transform.js
+- Latest : https://naver.github.io/egjs-jquery-transform/release/latest/dist/transform.js
+- Specific version : https://naver.github.io/egjs-jquery-transform/release/[VERSION]/dist/transform.js
 
 ### For production (Compressed)
 
 You can download the compressed files for production
 
-- Latest : https://naver.github.io/egjs-transform/release/latest/dist/transform.min.js
-- Specific version : https://naver.github.io/egjs-transform/release/[VERSION]/dist/transform.min.js
+- Latest : https://naver.github.io/egjs-jquery-transform/release/latest/dist/transform.min.js
+- Specific version : https://naver.github.io/egjs-jquery-transform/release/[VERSION]/dist/transform.min.js
 
 ### Installation with npm
 
-The following command shows how to install egjs-transform using npm.
+The following command shows how to install egjs-jquery-transform using npm.
 
 ```bash
 $ npm install @egjs/transform
@@ -50,11 +50,11 @@ $ npm install @egjs/transform
 
 ## Bug Report
 
-If you find a bug, please report it to us using the [Issues](https://github.com/naver/egjs-transform/issues) page on GitHub.
+If you find a bug, please report it to us using the [Issues](https://github.com/naver/egjs-jquery-transform/issues) page on GitHub.
 
 
 ## License
-egjs-transform is released under the [MIT license](http://naver.github.io/egjs/license.txt).
+egjs-jquery-transform is released under the [MIT license](http://naver.github.io/egjs/license.txt).
 
 
 ```

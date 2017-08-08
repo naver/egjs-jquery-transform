@@ -38,7 +38,7 @@
 			"url": ""
 		},
 		"meta": {
-			"title": "egjs::transform - API",
+			"title": "egjs::jquery-transform - API",
 			"description": "A method extended from the jQuery animate() method. It supports CSS transform property and 3D acceleration.",
 			"keyword": "jQuery, UI Component, egjs, transform"
 		},
