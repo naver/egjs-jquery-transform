@@ -10,7 +10,7 @@ var config = {
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].js",
-		library: [pkg.namespace.eg, "transform"],
+		library: [pkg.namespace.eg, "$Transform"],
 		libraryTarget: "umd",
 		umdNamedDefine: true
 	},
