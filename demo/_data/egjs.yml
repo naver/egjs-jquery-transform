@@ -1,4 +1,4 @@
-component: Transform
+component: $Transform
 home: //naver.github.io/egjs
 desc: A method extended from the jQuery animate() method. It supports CSS transform property and 3D acceleration.
 dist:
@@ -6,7 +6,7 @@ dist:
 GA: UA-70842526-21
 github:
   user: naver
-  repo: egjs-transform 
+  repo: egjs-jquery-transform 
 js:
 - assets/js/demo.js
 
