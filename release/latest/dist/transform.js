@@ -1,8 +1,8 @@
 /*!
  * Copyright (c) 2017 NAVER Corp.
- * @egjs/transform project is licensed under the MIT license
+ * @egjs/jquery-transform project is licensed under the MIT license
  * 
- * @egjs/transform JavaScript library
+ * @egjs/jquery-transform JavaScript library
  * 
  * 
  * @version 2.0.0
@@ -11,11 +11,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("jquery"));
 	else if(typeof define === 'function' && define.amd)
-		define("transform", ["jquery"], factory);
+		define("$Transform", ["jquery"], factory);
 	else if(typeof exports === 'object')
-		exports["transform"] = factory(require("jquery"));
+		exports["$Transform"] = factory(require("jquery"));
 	else
-		root["eg"] = root["eg"] || {}, root["eg"]["transform"] = factory(root["jQuery"]);
+		root["eg"] = root["eg"] || {}, root["eg"]["$Transform"] = factory(root["jQuery"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_0__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

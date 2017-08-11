@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>egjs-transform</title>
+    <title>egjs-jquery-transform</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
@@ -21,10 +21,20 @@
 	<script src="release/latest/dist/transform.js"></script>
 
 <script>
+	var homeUrl = window.location.href;
+	if (homeUrl.indexOf("#") !== -1) {
+		homeUrl = homeUrl.substr(0, homeUrl.indexOf("#"));
+	}
+	homeUrl = homeUrl
+		.replace("/index.html", "/")
+		.replace("/gallery.html", "/");
+	if (homeUrl[homeUrl.length-1] !== "/") {
+		homeUrl += "/";
+	};
+	window.HOMELINK = homeUrl;
 	window.LIBLINK = [];
 	
-	window.LIBLINK.push(window.location.href.replace("/index.html", "/")
-            .replace("/gallery.html", "/") + "release/latest/dist/transform.js");
+	window.LIBLINK.push(window.HOMELINK + "release/latest/dist/transform.js");
 	
 </script>
 <body>
