@@ -1,6 +1,6 @@
 {
   "name": "@egjs/jquery-transform",
-  "version": "2.0.0",
+  "version": "2.0.0-snapshot",
   "main": "dist/transform.js",
   "es2015": "src/Transform.js",
   "scripts": {
