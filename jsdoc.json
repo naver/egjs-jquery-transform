@@ -27,7 +27,7 @@
 		"default": {
 			"outputSourceFiles" : true
 		},
-		"applicationName": "eg.$Transform",
+		"applicationName": "eg.Transform",
 		"disqus": "egjs",
 		"googleAnalytics": "UA-70842526-21",
 		"openGraph": {
@@ -44,7 +44,8 @@
 		},
 		"linenums": true,
 		"link": {
-			"canonical": "http://naver.github.io/egjs/"
+			"canonical": "http://naver.github.io/egjs-jquery-transform/release/latest/doc",
+			"home": "https://naver.github.io/egjs-jquery-transform/"
 		}
 	},
 	"markdown": {
