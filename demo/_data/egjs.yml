@@ -3,6 +3,7 @@ home: //naver.github.io/egjs
 desc: A method extended from the jQuery animate() method. It supports CSS transform property and 3D acceleration.
 dist:
 - release/latest/dist/transform.js
+hashtag: "#jquery-plugin #animation"
 GA: UA-70842526-21
 github:
   user: naver
