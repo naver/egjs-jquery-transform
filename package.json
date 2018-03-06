@@ -73,6 +73,7 @@
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0",
     "webpack-merge": "^4.1.0",
-    "write-file-webpack-plugin": "^4.2.0"
+    "write-file-webpack-plugin": "^4.2.0",
+    "marked": "^0.3.9"
   }
 }
