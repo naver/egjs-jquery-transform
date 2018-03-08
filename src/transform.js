@@ -54,7 +54,7 @@ function unit(name) {
  */
 function getConverted(val, base) {
 	let ret = val;
-	const num = val.match(/((-|\+)*[0-9]+)%/);
+	const num = val.match(getConvertedRegNum);
 
 	if (num && num.length >= 1) {
 		ret = `${base * (parseFloat(num[1]) / 100)}px`;
@@ -64,6 +64,8 @@ function getConverted(val, base) {
 
 	return ret;
 }
+// previous regex = /((-|\+)*[0-9]+)%/
+const getConvertedRegNum = /([-+]?[0-9.]+)%/;
 
 /**
  * Parse a transform atom value.
@@ -75,7 +77,7 @@ function getConverted(val, base) {
  * which is called very frequently.
  */
 function toParsedFloat(val) {
-	const m = val.match(/((-|\+)*[\d|.]+)(px|deg|rad)*/);
+	const m = val.match(toParsedFloatRegNum);
 	let ret;
 
 	if (m && m.length >= 1) {
@@ -83,6 +85,8 @@ function toParsedFloat(val) {
 	}
 	return ret;
 }
+// previous regex = /((-|\+)*[\d|.]+)(px|deg|rad)*/
+const toParsedFloatRegNum = /([-+]?[0-9.]+)(px|deg|rad)?/;
 
 function correctUnit(transform, width, height) {
 	let m;
